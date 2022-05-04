@@ -1,0 +1,102 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Cadastro de Operações Deposito/Saque</h2>
+            </div>
+
+
+            <div class="card-body">
+                {{>_msg}}
+                <hr>
+
+                <form method="POST" action="/operacao/save-operacao">
+                    <!-- <input name="idEmpresa" id="idEmpresa" type="hidden" value="{{empresa.idEmpresa}}"> -->
+                    <input name="idOperacao" id="idOperacao" type="hidden" value="{{operacao.idOperacao}}">
+
+                    <div class="form-group col-md-10">
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <label for="idEmpresa">Cliente</label>
+                                <select name="idCliente" id="idCliente" class="custom-select">
+                                    {{#each cliente}}
+                                    <option value="{{idCliente}}">{{nome}}</option>
+                                    {{else}}
+                                    <option value="0">Nenhum Cliente Cadastrado</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <div class="p-4" style="text-align: right;">
+                                    <span class="d-none d-md-block">
+                                        <a href="/operacao/lista-operacao"
+                                            class="btn btn-outline-primary btn-sm">Listar</a>
+                                    </span>
+                                    <div class="dropdown d-block d-md-none">
+                                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button"
+                                            id="acoesListar" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Ações
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
+                                            <a class="dropdown-item" href="/operacao/lista-operacao">Listar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Dados da Operação</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+
+                                    <label><span class="text-danger">*</span> Tipo da Operação:</label>
+                                    <select class="custom-select" id="tipoOperacao" name="tipoOperacao" required>
+                                        <option selected value="C"> Deposito</option>
+                                        <option value="D"> Saque</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger ">*</span> Data Operacao:</label>
+                                    <input name="dataOperacao" type="date" class="form-control" id="dataOperacao"
+                                        value="{{operacao.dataOperacao}}" required>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger">*</span> Valor U$:</label>
+                                    <input name="valor" type="text" class="form-control" id="valor"
+                                        value="{{operacao.conta}}" placeholder="Valor" required>
+                                </div>
+
+                                <!--
+                                <div class="form-group col-md-3">
+                                    <label for="idConta">Conta da Empresa</label>
+                                    <select name="idConta" id="idConta" class="custom-select">
+                                        {{#each conta_empresa}}
+                                        <option value="{{idConta}}">{{nomeBanco}} - {{agencia}}/{{numeroConta}}</option>
+                                        {{else}}
+                                        <option value="0">Nehuma Conta Cadastrada</option>
+                                        {{/each}}
+
+                                    </select>
+                                </div>
+                                -->
+
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                            <!-- a href="/operacao/list-operacoes" class="btn btn-warning">Listar Operacoes</a -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

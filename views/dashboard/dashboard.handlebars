@@ -1,0 +1,67 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                {{#if usuario.usuario}}
+                <h2 class="display-4 titulo">Seja Bem Vindo - {{usuario.nome}}</h2>
+                {{else}}
+                <h2 class="display-4 titulo">Seja Bem Vindo - {{usuario.nome}}</h2>
+                {{/if}}
+            </div>
+        </div>
+
+        {{#if usuario.usuario}}
+        <div class="row ">
+            {{#each cliente}}
+            <div class="col-lg-3 col-sm-6">
+                <div class="card menu-card bg-info border-secondary text-white m-1 ">
+                    <div class="card-body ">
+                        <a href="/cliente/edit-cliente/{{idCliente}}">
+                            <img class="img-circle" src="{{logo}}" border="0" alt="{{logo}}"
+                                style="width: 100px; border-radius: 100%;" />
+                        </a>
+                        <h2 class="lead"
+                            style="font-family: helvetica; font-size: 14px; text-decoration: none; color:#FFF; ">
+                            <!--  idCliente, nome, logo, fantasia, bairro, telefone -->
+
+                            {{fantasia}}<br />
+                            {{bairro}} <br />
+                            {{telefone}} <br />
+                            {{nome}}
+
+                    </div>
+
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        {{else}}
+        {{msgBoasVindas}}
+        {{#if (eq usuario.idCliente 34)}}
+        <img src="/images/dashboard.jpg" class="img-fluid" alt="" width="95%" height="100%">
+        {{/if}}
+        {{/if}}
+
+
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/popper.min.js"></script>
+<script src="../../dist/js/bootstrap.min.js"></script>
+
+
+<!-- Icons -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>

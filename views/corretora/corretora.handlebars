@@ -1,0 +1,113 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Cadastro da Corretora do Cliente</h2>
+            </div>
+            <div class="card-body">
+                {{>_msg}}
+                <form method="POST" action="/corretora/save-corretora">
+                    <input name="idCliente" id="idCliente" type="hidden" value="{{cliente.idCliente}}">
+                    <input name="idCorretora" id="idCorretora" type="hidden" value="{{corretora.idCorretora}}">
+                    <div class="form-group">
+                        <label>Cliente:</label>
+                        <h5 style="font-weight: bold;">{{cliente.nome}}</h5>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Dados da Corretora</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label><span class="text-danger">*</span> Nome da Corretora:</label>
+                                    <input name="nome" type="text" class="form-control" id="nome"
+                                        value="{{corretora.nome}}" placeholder="Corretora" required>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger"></span> Agência:</label>
+                                    <input name="agencia" type="text" class="form-control" id="agencia"
+                                        placeholder="Agência" value="{{corretora.agencia}}">
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger "></span> Número da Conta:</label>
+                                    <input name="numero" type="text" class="form-control" id="numero"
+                                        value="{{corretora.numero}}" placeholder="Número Conta">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger">*</span> Usuário:</label>
+                                    <input name="usuario" type="text" class="form-control" id="usuario"
+                                        placeholder="Usuário" value="{{corretora.usuario}}" required>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger">*</span> Login:</label>
+                                    <input name="login" type="text" class="form-control" id="login" placeholder="Login"
+                                        value="{{corretora.login}}" required>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger">*</span> Senha:</label>
+                                    <input name="senha" type="text" class="form-control" id="senha" placeholder="Senha"
+                                        value="{{corretora.senha}}" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger"></span> Servidor MT4:</label>
+                                    <input name="servidor" type="text" class="form-control" id="servidor"
+                                        placeholder="Servidor" value="{{corretora.servidor}}">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger"></span> Login MT4:</label>
+                                    <input name="loginmt4" type="text" class="form-control" id="loginmt4"
+                                        placeholder="Login MT 4" value="{{corretora.loginmt4}}">
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger"></span> Senha MT4:</label>
+                                    <input name="senhamt4" type="text" class="form-control" id="senhamt4"
+                                        placeholder="Senha MT4" value="{{corretora.senhamt4}}">
+                                </div>
+                            </div>
+                            {{#if usuario.usuario}}
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger"></span> Servidor Sinal:</label>
+                                    <input name="servidorSinal" type="text" class="form-control" id="servidorSinal"
+                                        placeholder="Servidor Sinal" value="{{corretora.servidorSinal}}">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger"></span> Usuario Sinal:</label>
+                                    <input name="usuarioSinal" type="text" class="form-control" id="usuarioSinal"
+                                        placeholder="Usuario Sinal" value="{{corretora.usuarioSinal}}">
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger"></span> Senha Sinal:</label>
+                                    <input name="senhaSinal" type="text" class="form-control" id="senhaSinal"
+                                        placeholder="Senha Sinal" value="{{corretora.senhaSinal}}">
+                                </div>
+                            </div>
+                            {{/if}}
+
+                            <hr>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                            <a href="/cliente/list-clientes" class="btn btn-warning">Listar Cliente</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

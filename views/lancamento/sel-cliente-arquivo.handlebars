@@ -1,0 +1,30 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Seleciona o Cliente do Arquivo</h2>
+            </div>
+        </div>
+        
+        <form method="GET" action="/lancamento/envia-arquivo">
+            
+            <div class="card" style="width: 40rem;">
+                <div class="form-group col-md-12">
+                    <label for="idCliente">Seleciona o Cliente</label>
+                    <select name="idCliente" id="idCliente" class="custom-select">
+                        {{#each cliente}}
+                        <option value="{{idCliente}}">{{nome}}</option>
+                        {{else}}
+                        <option value="0">Nehum Cliente Cadastrada</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-secondary">Selecionar</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+    </div>
+</div>

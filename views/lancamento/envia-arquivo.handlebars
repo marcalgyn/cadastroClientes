@@ -1,0 +1,155 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo"> Envio Arquivo Lançamento</h2>
+            </div>
+        </div>
+   
+        {{>_msg}}
+        <hr>
+
+        <form method="POST" action="/lancamento/send-file" enctype="multipart/form-data" id="formArquivo">
+
+            <input name="idLancamento" id="idLancamento" type="hidden" value="{{listagemlancamento.idLancamento}}">
+            <input id="idCliente" name="idCliente" value="{{cliente.idCliente}}" type="hidden">
+
+            <div class="row">
+                <label for="nome">
+                    <h4>Cliente..: </h4>
+                </label>
+                <div class="col-md-6">
+                    <h4> <input name="nome" id="nome" type="text" size="37" value="{{cliente.nome}}" readonly> </h4>
+                </div>
+
+                <label for="percentual">Percentual Comissão..: </label>
+                <div class="form-group col-md-1">
+                    <input name="percentualComissao" id="percentualComissao" size="5" type="true"
+                        value="{{cliente.valorComissao}}" readonly="true">
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="filename">Selecione um arquivo: </label>
+                    <input type="file" class="form-control-file" id="filename" name="filename" required>
+                </div>
+
+            </div>
+            <button class="btn btn-primary" type="submit"> Importar</button>
+            <a href="/lancamento/sel-cliente-arquivo" class="btn btn-dark"> Voltar </a>
+
+        </form>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+    function calculaComissao(valor, comissao) {
+
+        /***** Valor da Comissao ta fixa porvisoriamente ******/
+        //  var valorOperacao = document.getElementById('valorOperado').value;
+
+        var valorOperacao = parseFloat(valor);
+        var valorComissao = 0;
+        var pComissao = parseFloat(comissao);
+
+        //Inserindo Registro    
+        var swap = parseFloat(document.getElementById('swap').value);
+        if (swap < 0) {
+            swap = swap * (-1);
+            valorComissao = ((valorOperacao - swap) * (pComissao / 100));
+
+            /* Independente do valor da comissão*/
+            document.getElementById('valorComissao').value = valorComissao;
+
+            /* Funcao calcula quando a camissão for negativo zera a comissao
+            if (valorComissao < 0) {
+                document.getElementById('valorComissao').value = 0.00;
+            } else {
+                document.getElementById('valorComissao').value = valorComissao;
+            }
+            */
+
+        } else {
+            valorComissao = (valorOperacao + swap) * (pComissao / 100);
+            document.getElementById('valorComissao').value = valorComissao;
+
+            /* Valida se a comissao for negativo nao calcaula comissao
+            if (valorComissao < 0) {
+                document.getElementById('valorComissao').value = 0.00;
+            } else {
+                document.getElementById('valorComissao').value = valorComissao;
+            }
+            */
+        }
+
+
+        //Tela Modal Alterando 
+        var swap_modal = parseFloat(document.getElementById('swap_modal').value);
+        var pComissao1 = parseFloat(comissao);
+        var valorComissao1 = 0;
+
+        if (swap_modal < 0) {
+            swap_modal = (swap_modal * (-1));
+            valorComissao1 = ((valorOperacao - swap_modal) * (pComissao1 / 100));
+            /* Insere valor independente se comissao e negativa*/
+            document.getElementById('valorcomissao_modal').value = valorComissao1;
+
+            /* Calcula se valor da comissao e negativo
+            if (valorComissao1 < 0) {
+                document.getElementById('valorcomissao_modal').value = 0.00
+            } else {
+                document.getElementById('valorcomissao_modal').value = valorComissao1;
+            }
+            */
+
+        } else {
+            valorComissao1 = ((valorOperacao + (swap_modal)) * (pComissao1 / 100));
+            /*Inserer valor da comissao independente se e negativo ou nao*/
+            document.getElementById('valorcomissao_modal').value = valorComissao1;
+
+            /* Valida se a comissao for negativo
+            if (valorComissao1 < 0) {
+                document.getElementById('valorcomissao_modal').value = 0.00;
+            } else {
+                document.getElementById('valorcomissao_modal').value = valorComissao1;
+            }
+            */
+        }
+    }
+
+    function getDataAtual() {
+        data = new Date();
+        data = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
+        document.getElementById('dataMovimentacao').value = (data);
+
+        return data;
+    }
+
+    window.onload = function () {
+        document.getElementById('dataMovimentacao').value = getDataAtual();
+    }
+
+    function validaCampos(frm) {
+        var erros = 0;
+        var mgs = "";
+
+        if (frm.ativo.value == '') {
+            msg = "Informe o Ativo.\n;"
+            alert(msg);
+            erros++;
+        }
+
+        if (erros > 0) {
+            alert(mgs);
+            return false;
+        }
+        frm.submit();
+        header("Cache: no-cache");
+    }
+
+</script>

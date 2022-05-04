@@ -1,0 +1,46 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Empresas Cadastradas</h2>
+            </div>
+            <div class="card-body">
+                {{>_msg}}
+                <div class="mb-3">
+                    <a href="/empresa" class="btn btn-primary">Cadastrar Nova Empresa</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <!--<th>ID</th>-->
+                                <th>Razão Social</th>
+                                <th class="d-none d-sm-table-cell">Fantasia</th>
+                                <th class="d-none d-lg-table-cell">CNPJ</th>
+                                <th class="d-none d-lg-table-cell">E-mail</th>
+                                <th class="d-none d-lg-table-cell">Telefone</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each empresas}}
+                            <tr>
+                                <!--<th>{{_id}}</th>-->
+                                <td>{{razaoSocial}}</td>
+                                <td class="d-none d-sm-table-cell">{{fantasia}}</td>
+                                <td class="d-none d-lg-table-cell">{{cnpj}}</td>
+                                <td class="d-none d-lg-table-cell">{{email}}</td>
+                                <td class="d-none d-lg-table-cell">{{telefone}}</td>
+                                <td class="text-center">
+                                    <a href="/empresa/edit-empresa/{{idEmpresa}}"
+                                        class="btn btn-success btn-sm">Editar</a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

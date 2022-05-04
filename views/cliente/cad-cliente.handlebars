@@ -1,0 +1,232 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Cadastro de Cliente</h2>
+            </div>
+            <div class="card-body">
+                {{>_msg}}
+                <form method="POST" action="/cliente/save-cliente" enctype="multipart/form-data">
+                    <input name="idCliente" id="idCliente" type="hidden" value="{{cliente.idCliente}}">
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <label for="empresa">Empresa</label>
+
+                            <select name="idEmpresa" class="custom-select">
+                                {{#each empresas}}
+                                <option value="{{idEmpresa}}">{{razaoSocial}}</option>
+                                {{else}}
+                                <option value="0">Nehuma Empresa Cadastrada</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <!-- Inserir a Logo Marca aqui -->
+                        <div class="form-group col-md-4">
+                            <label><span class="text-danger">*</span> Imagem JPEG: (limite 5MB)</label>
+                            <input name="file" type="file" class="form-control" id="file">
+                            <p>
+                                <span class="text-danger">* </span>Campo obrigatório
+                            </p>
+                        </div>
+
+                    </div>
+                    <label>ID: {{cliente.idCliente}}</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label><span class="text-danger">*</span> Razão Social:</label>
+                            <input name="nome" style="text-transform: uppercase;" class="form-control" id="nome"
+                                value="{{cliente.nome}}" onkeyup="this.value = this.value.toUpperCase();"
+                                placeholder="Nome Cliente" required>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label><span class="text-danger">*</span> CNPJ/CPF:</label>
+                            <input name="cpf" type="text" class="form-control" id="cpf" placeholder="CPF"
+                                value="{{cliente.cpf}}" onblur="$(this).mask('99.999.999/9999-99');">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label><span class="text-danger "></span> I.E:</label>
+                            <input name="identidade" type="text" class="form-control" id="identidade"
+                                value="{{cliente.identidade}}" placeholder="Insc Estadual">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label><span class="text-danger "></span> Data Constituicao:</label>
+                            <input name="dtNascimento" type="date" class="form-control" id="dtNascimento"
+                                value="{{cliente.dtNascimento}}" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label><span class="text-danger">*</span> Fantasia:</label>
+                            <input name="fantasia" style="text-transform: uppercase;" class="form-control" id="fantasia"
+                                value="{{cliente.fantasia}}" onkeyup="this.value = this.value.toUpperCase();"
+                                placeholder="Nome Fantasia" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Telefone:</label>
+                            <span class="text-danger ">*</span>
+
+                            <input name="telefone" type="text" class="form-control" id="telefone"
+                                value="{{cliente.telefone}}" placeholder="Telefone" required
+                                onblur="mascaraTelefone(telefone.value)" onkeypress="return onlynumber();">
+                            <!-- onblur="$(this).mask('(99) 99999-9999')" -->
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="empresa">Representante</label>
+                            <select name="idCorretor" class="custom-select">
+                                {{#each corretores}}
+                                <option value="{{idCorretor}}">{{nome}}</option>
+                                {{else}}
+                                <option value="0">Nehuma Representante Cadastrado</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4 class="mb-0">Endereço</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-1">
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="pesquisacep(cep.value)">Buscar</button>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input name="cep" type="search" class="form-control" id="cep"
+                                        value="{{cliente.cep}}" placeholder="Cep" onblur="pesquisacep(cep.value)"
+                                        required onkeypress="$(this).mask('00.000-000')">
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <input name="endereco" type="text" class="form-control" id="endereco"
+                                        value="{{cliente.endereco}}" placeholder="Endereço" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="text" name="bairro" type="text" class="form-control" id="bairro"
+                                        placeholder="Bairro" value="{{cliente.bairro}}">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input name="cidade" type="text" class="form-control" id="cidade"
+                                        value="{{cliente.cidade}}" placeholder="Cidade" required>
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <input name="estado" type="text" class="form-control" id="estado" placeholder="UF"
+                                        value="{{cliente.estado}}" required>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4 class="mb-0">Dados da Mensalidade</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <!--
+                                {{#if usuario.usuario}}
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger ">*</span> Tipo Conta:</label>
+                                    <select class="custom-select" id="tipoConta" name="tipoConta" required>
+                                        <option selected value="C"> Conjunta</option>
+                                        <option value="I"> Individual</option>
+                                    </select>
+                                </div>
+                                {{/if}}
+                                -->
+
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger ">*</span> Valor Mensal </label>
+                                    <input name="valorInvestido" type="text" style="text-align: right;"
+                                        class="form-control col-md-8" id="valorInvestido"
+                                        value="{{cliente.valorInvestido}}" placeholder="000.00"
+                                        onkeypress="$(this).mask('##0.00', {reverse: true})">
+                                </div>
+
+                                {{#if usuario.usuario}}
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger ">*</span> Comissão %:</label>
+                                    <input name="valorComissao" type="text" style="text-align: right;"
+                                        class="form-control" id="valorComissao" value="{{cliente.valorComissao}}"
+                                        placeholder="% Comissão" onkeypress="$(this).mask('##0.00', {reverse: true})">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label> <span class="text-danger ">*</span> Cliente Ativo? </label>
+
+                                    {{#if (eq cliente.ativo "S")}}
+                                    <input id="ativo" name="ativo" value="S" type="checkbox" checked />
+                                    <span><i> Cliente Ativado.</i> </span>
+                                    {{else}}
+                                    <input id="ativo" name="ativo" value="N" type="checkbox" />
+                                    <span><i> Cliente Desativado.</i> </span>
+                                    {{/if}}
+                                </div>
+
+
+                                {{/if}}
+                                <div class="card-body">
+                                    <div class="form-group col-md-8">
+                                        <label><span class="input-group-addon">*</span> E-mail: </label>
+                                        <input name="email" type="email" style="text-transform: lowercase;"
+                                            class="form-control" id="email" value="{{cliente.email}}"
+                                            placeholder="E-mail" required
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h4 class="mb-0">Dados de Acesso ao Sistema</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger">*</span> Senha:</label>
+                                    <input name="senha" type="password" class="form-control" id="senha"
+                                        placeholder="Senha" value="{{cliente.senha}}" required>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger">*</span> Confirme a Senha:</label>
+                                    <input name="confirmeSenha" type="password" class="form-control" id="confirmeSenha"
+                                        placeholder="confirmeSenha" value="{{cliente.senha}}" required>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label><span class="text-danger">*</span> Nível de Acesso:</label>
+                                    <select class="custom-select" id="tipoUsuario" name="tipoUsuario" required>
+                                        <option selected value="U"> Cliente</option>
+                                        {{#if usuario.usuario}}
+                                        <option value="A"> Administrador</option>
+                                        {{/if}}
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+
+                    <button type="reset" class="btn btn-secondary">Cancelar</button>
+
+                    <a href="/cliente/list-clientes" class="btn btn-warning">
+                        {{#if usuario.usuario}}
+                        Listar Clientes
+                        {{else}}
+                        Listar Dados
+                        {{/if}}
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

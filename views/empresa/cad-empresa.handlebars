@@ -1,0 +1,102 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Cadastro de Empresa</h2>
+            </div>
+            <div class="card-body">
+                {{>_msg}}
+                <form method="POST" action="/empresa/save-empresa">
+                    <input name="idEmpresa" type="hidden" value="{{empresa.idEmpresa}}">
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label><span class="text-danger">*</span> Razão Social:</label>
+                            <input name="razaoSocial" type="text" class="form-control" id="razaoSocial"
+                                value="{{empresa.razaoSocial}}" placeholder="Razão Social" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label><span class="text-danger">*</span> Nome de Fantasia:</label>
+                            <input name="fantasia" type="text" class="form-control" id="fantasia" placeholder="fantasia"
+                                value="{{empresa.fantasia}}">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label><span class="text-danger ">*</span> CNPJ:</label>
+                            <input name="cnpj" type="text" class="form-control" id="cnpj" value="{{empresa.cnpj}}"
+                                placeholder="CNPJ" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label><span class="text-danger">*</span> Endereço:</label>
+                            <input name="endereco" type="text" class="form-control" id="endereco"
+                                value="{{empresa.endereco}}" placeholder="Endereço" required>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label><span class="text-danger">*</span> Bairro:</label>
+                            <input type="text" name="bairro" type="text" class="form-control" id="bairro"
+                                placeholder="Bairro" value="{{empresa.bairro}}">
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label><span class="text-danger ">*</span> Complemento:</label>
+                            <input name="complemento" type="text" class="form-control" id="complemento"
+                                value="{{empresa.complemento}}" placeholder="Complemento" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label><span class="text-danger ">*</span> Cep:</label>
+                            <input name="cep" type="text" class="form-control" id="cep" value="{{empresa.cep}}"
+                                placeholder="Cep" required>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label><span class="text-danger">*</span> Cidade:</label>
+                            <input name="cidade" type="text" class="form-control" id="cidade" value="{{empresa.cidade}}"
+                                placeholder="Cidade" required>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label><span class="text-danger">*</span> UF:</label>
+                            <input name="estado" type="text" class="form-control" id="estado" value="{{empresa.estado}}"
+                                placeholder="UF" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label><span class="text-danger">*</span> E-mail:</label>
+                            <input name="email" type="email" class="form-control" id="email" value="{{empresa.email}}"
+                                placeholder="E-mail" required>
+                        </div>
+
+                        <div class="form-group col-md-5">
+                            <label><span class="text-danger">*</span> Site:</label>
+                            <input name="site" type="text" class="form-control" id="site" placeholder="Site"
+                                value="{{empresa.site}}" required>
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label><span class="text-danger ">*</span> Telefone:</label>
+                            <input name="telefone" type="text" class="form-control" id="telefone"
+                                value="{{empresa.telefone}}" placeholder="Telefone" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="reset" class="btn btn-secondary">Cancelar</button>
+                    <a href="/empresa/list-empresas" class="btn btn-warning">Listar Empresas</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery.noConflict();
+    jQuery(function ($) {
+        $("#telefone").mask("(99) 99999-9999");
+        $("#cnpj").mask("99.999.999/9999-99");
+        $("#cep").mask("99.999-999");
+    });
+</script>

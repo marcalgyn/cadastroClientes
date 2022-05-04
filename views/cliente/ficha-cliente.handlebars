@@ -1,0 +1,261 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Ficha do Cliente</h2>
+            </div>
+        </div>
+        {{#each cliente}}
+        <h4> {{nome}} </h4>
+        {{/each}}
+        <hr>
+        <!-- Navegador de Menus -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="cliente-tab" data-toggle="tab" href="#cliente" role="tab"
+                    aria-controls="cliente" aria-selected="true">Cliente</a>
+            </li>
+
+            <!-- li class="nav-item">
+                <a class="nav-link" id="banco-tab" data-toggle="tab" href="#banco" role="tab" aria-controls="banco"
+                    aria-selected="false">Banco</a>
+            </li -->
+
+            <!-- li class="nav-item">
+                <a class="nav-link" id="corretora-tab" data-toggle="tab" href="#corretora" role="tab"
+                    aria-controls="corretora" aria-selected="false">Corretora</a>
+            </li -->
+
+            <li class="nav-item">
+                <a class="nav-link" id="documentos-tab" data-toggle="tab" href="#documentos" role="tab"
+                    aria-controls="documentos" aria-selected="false">Documentos</a>
+            </li>
+
+            <!-- li class="nav-item">
+                <a class="nav-link" id="extrato-tab" data-toggle="tab" href="#extrato" role="tab"
+                    aria-controls="extrato" aria-selected="false">Extrato</a>
+            </li -->
+
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Dados cadastrais do Cliente -->
+            <div class="tab-pane fade show active" id="cliente" role="tabpanel" aria-labelledby="cliente-tab">
+                <form class="mt-4">
+                    <div class="form-group">
+                        {{#each cliente}}
+
+                        <div class="row">
+                            <div class="col-md-1">
+                                <label>ID: {{idCliente}}</label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Nome: {{nome}}</label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>CNPJ/CPF: {{cpf}}</label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>I.E:</label>
+                                <label>{{identidade}}</label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Dt. Constituição:</label>
+                                <label id="dtNascimento" name="idNascimento">{{dtNascimento}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Telefone: {{telefone}}</label>
+                            </div>
+                            <div class="col-md-3">
+                                <label>E-mail: {{email}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label>Endereço: {{endereco}}</label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Bairro: {{bairro}}</label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Cidade-UF: {{cidade}} - {{estado}}</label>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label>Cep:</label>
+                                <label>{{cep}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Usuario: {{usuario}}</label>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Valor Mensal: {{valorInvestido}}</label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label>Data Cadastro: {{dtcadastro}}</label>
+                            </div>
+
+                            <!-- div class="col-md-2">
+                                <label>Conta: {{tipoConta}} - (Conjunta, Individual)</label>
+                            </div -->
+
+                        </div>
+                        {{/each}}
+                    </div>
+                </form>
+            </div>
+
+            <!-- Dados cadastrais do Banco 
+            <div class="tab-pane fade" id="banco" role="tabpanel" aria-labelledby="banco-tab">
+                <form class="mt-4">
+                    {{#each contacliente}}
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Banco: {{nomeBanco}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Agencia: {{agenciaBanco}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Operação: {{operacao}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Numero Conta: {{numeroConta}}</label>
+                        </div>
+                    </div>
+                    {{/each}}
+                </form>
+            </div>
+            -->
+
+            <!-- Dados cadastrais da Corretora
+            <div class="tab-pane fade" id="corretora" role="tabpanel" aria-labelledby="corretora-tab">
+
+                <form class="mt-4">
+                    {{#each corretora}}
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Nome Corretora: {{nome}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Agencia: {{agencia}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Numero: {{numero}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Usuario: {{usuario}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Login: {{login}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Senha: {{senha}}</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Servidor: {{servidor}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>login MT4: {{loginmt4}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Senha MT4: {{senhamt4}}</label>
+                        </div>
+                    </div>
+                    {{/each}}
+                </form>
+
+            </div>
+            -->
+            <!-- Dados cadastrais Documentos -->
+            <div class="tab-pane fade" id="documentos" role="tabpanel" aria-labelledby="documentos-tab">
+                <form class="mt-4">
+                    <div class="row">
+                        {{#each imagens}}
+                        <div class="col-md-2">
+                            <a href="{{arquivo}}" target="_blank">
+                                <img src="{{arquivo}}" border="0" alt="{{documento}}" style="width: 150px;" />
+                            </a>
+                            <div class="row">
+                                <div class="col-mb-2">
+                                    <label>Documento: {{documento}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </form>
+            </div>
+            <!-- Extrato Final 
+
+            <div class="tab-pane fade" id="extrato" role="tabpanel" aria-labelledby="extrato-tab">
+                <form class="mt-4">
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Capital Investido: {{formatNumber deposito style="currency" currency="USD"}}</label> 
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Valor Operação: {{formatNumber operacao style="currency" currency="USD"}}</label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Valor Swap: {{formatNumber swap style="currency" currency="USD"}}</label>
+                        </div>
+                        
+
+                        <div class="col-md-2">
+                            <label>Valor Retirada: {{formatNumber saque style="currency" currency="USD"}}</label>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Saldo Investido: {{formatNumber saldo style="currency" currency="USD"}}</label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            -->
+
+        </div>
+    </div>
+    <div class="mt-4">
+        <a href="/cliente/list-clientes" class="btn btn-warning">
+            {{#if usuario.usuario}}
+            Listar Clientes
+            {{else}}
+            Listar Dados
+            {{/if}}
+        </a>
+    </div>
+</div>

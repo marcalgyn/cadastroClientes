@@ -1,0 +1,93 @@
+<!--tag para desabilitar logo style="width:80%; height: 50%;" -->
+
+<style>
+    h1.text-light {
+        display: none;
+    }
+</style>
+
+<div id="header">
+    <div>
+        <img class="img-fluid rounded float-left " width="780px" style="position: relative; height: 150px"
+            src='https://win2tech.com.br/images/logo_relatorio.jpeg'>
+    </div>
+</div>
+
+<div style=" width:80%; text-align: center; font-style: normal; font-family: Arial, Helvetica, sans-serif;">
+    <p></p>
+    <p style="font-size: 18px; text-align: center;">Relatório por Período</p>
+</div>
+
+
+<hr>
+<div id="pageContent" style="font-family: Arial, Helvetica, sans-serif; font-style: normal;">
+    {{#each cliente}}
+    <p style="font-size: 11px;">Cliente..: {{nome}} - {{telefone}}</p>
+    {{/each}}
+    <p style="font-size: 11px;">Periodo: {{dtInicio}} à {{dtFim}}</p>
+</div>
+
+
+<div style="width: 80%;">
+    <table class="table" style="line-height: 1;">
+        <thead style="font-style: normal; font-family: Arial, Helvetica, sans-serif; text-align:center;">
+            <tr>
+                <th scope="col" style="font-size: 12px;">Data</th>
+                <th scope="col" style="font-size: 12px;">Ativo</th>
+                <th scope="col" style="font-size: 12px;">Valor Operado</th>
+                <th scope="col" style="font-size: 12px;">Valor Swap</th>
+                <th scope="col" style="font-size: 12px;">Valor Comissão</th>
+                <th scope="col" style="font-size: 12px;">Percentual</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each dados}}
+            <tr style="font-style: normal; font-family: Arial, Helvetica, sans-serif; font-size: 10px;">
+                <td style="text-align: center;">{{moment dataMovimentacao "DD/MM/YYYY"}} </td>
+                <td style="text-align: left; text-transform:uppercase">{{ativo}}</td>
+                <td style="text-align: right;">{{formatNumber valorOperado style="currency" currency="USD"}}</td>
+                <td style="text-align: center;"> {{formatNumber swap style="currency" currency="USD"}}</td>
+                <td style="text-align: center;">{{formatNumber valorComissao style="currency" currency="USD"}}</td>
+                <td style="text-align: center;">{{formatNumber percentual style="currency" currency="USD"}} %</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <table class="table">
+        <tbody>
+            {{#each total}}
+            <tr style="font-style: normal; font-family: Arial, Helvetica, sans-serif; height: 5; font-size: 13px;">
+                <td style="text-align: center; font-size: large; ">Total.:</td>
+                <td style="text-align: right; width: 1px">{{formatNumber totalOperado style="currency" currency="USD"}}
+                </td>
+                <td style="text-align: right; width: 1px">{{formatNumber totalSwap style="currency" currency="USD"}}
+                </td>
+                <td style="text-align: center; width: 1px">
+                    {{formatNumber totalComissao style="currency" currency="USD"}}</td>
+            </tr>
+            {{/each}}
+
+            {{#if usuario.usuario}}
+
+            <tr style="font-style: normal; font-family: Arial, Helvetica, sans-serif; font-size: 13px;">
+                <td style="width: 10%;"></td>
+                <td style="text-align: center; font-size: small; width: 0px;">Spread..: R$ 0,07</td>
+                <td style="text-align: center; font-size: small; width: 0px;">Câmbio..:
+                    *{{formatNumber txCambio style="currency" currency="BRL"}} </td>
+                <td style="text-align: center; font-size: small; width: 0px;">Performance..:
+                    {{formatNumber totalReceber style="currency" currency="BRL"}}</td>
+            </tr>
+            {{/if}}
+
+        </tbody>
+    </table>
+</div>
+
+
+<div id="pageFooter"
+    style="text-align: center; width: 77%; font-family: 'Lucida Sans', Geneva, Verdana, sans-serif; font-size: 9px;">
+    <hr>
+    <p>www.win2tech.com.br <br />
+        *fonte: www.investing.com</p>
+</div>

@@ -1,0 +1,55 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Lista de Contas</h2>
+            </div>
+            <div class="card-body">
+                {{>_msg}}
+
+                <div class="mb-3">
+                    <a href="/contaEmpresa" class="btn btn-primary">Cadastrar Nova Conta</a>
+                </div>
+
+                <div class="table-responsive">
+                    
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th class="d-none d-sm-table-cell">Nome Banco</th>
+                                <th class="d-none d-lg-table-cell">Agencia Banco</th>
+                                <th class="d-none d-lg-table-cell">Numero Conta</th>
+                                <th class="text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each conta}}
+                            <input name="idEmpresa" id="idEmpresa" type="hidden" value="{{idEmpresa}}">
+                            <tr>
+                                <td>{{nome}}</td>
+                                <td class="d-none d-sm-table-cell">{{nomeBanco}}</td>
+                                <td class="d-none d-lg-table-cell">{{agencia}}</td>
+                                <td class="d-none d-lg-table-cell">{{numeroConta}}</td>
+
+                                <td class="text-center">
+                                    <span class="d-none d-md-block">
+                                        <a href="/contaEmpresa/edit-conta/{{idConta}}"
+                                            class="btn btn-outline-primary btn-sm">Editar Cadastro</a>
+                                    </span>
+
+                                    <div class="dropdown d-block d-md-none">
+                                        
+                                            <a class="btn btn-outline-primary btn-sm" href="/contaEmpresa/edit-conta/{{idConta}}">Editar</a>
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

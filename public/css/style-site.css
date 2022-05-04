@@ -1,0 +1,149 @@
+body {
+    padding-top: 0.5rem;
+}
+
+nav {
+    background-color: none;
+    line-height: 1.6 !important;
+}
+
+nav ul li.menu a {
+    font-size: 1.2rem !important;
+    color: #fff !important;
+}
+
+nav ul li.menu a:hover {
+    color: #e2dede !important;
+}
+
+.logo {
+    width: 120px;
+    height: 40px;
+    margin-right: 50px;
+}
+
+.descr-top {
+    background-image: url("/images/topo_home/home-top.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 150px;
+    padding-bottom: 150px;
+    color: #fff;
+}
+
+.servicos {
+    background-color: #f9faff;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.video {
+    background-image: url("../imagens/fundo-video.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #fff;
+}
+
+.exp-home {
+    background-color: #f9faff;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.exp-home-titulo {
+    color: #313451;
+}
+
+.rodape {
+    background-color: #313451;
+    color: #fff;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.rodape ul li a.link-rodape {
+    color: #fff !important;
+}
+
+.rodape ul li a.link-rodape:hover {
+    color: #adaeaf !important;
+    text-decoration: none;
+}
+
+.sobre {
+    background-color: #f9faff;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.descr-top-sobre {
+    background-image: url("../imagens/descr-top-sobre.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    color: #fff;
+}
+
+.sobre-titulo {
+    color: #e61239;
+}
+
+.contato {
+    background-color: #f9faff;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+}
+
+.logoRelatorio{
+    background-image: url("https://win2tech.com.br/images/logo_relatorio.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: #ccc;
+    border: 1px solid;
+    width: 20em;
+    height: 10em;
+
+}
+
+.whatsapp1 {position: fixed; top: 80%;
+    left: 30px;
+    padding: 15px; 
+    z-index: 10000000;
+    width: 120px;
+
+}
+.whatsapp {
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    background-color:#25d366;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:30px;
+    box-shadow: 1px 1px 2px #888;
+    z-index:1000;
+    
+
+    
+}

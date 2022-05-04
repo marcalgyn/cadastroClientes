@@ -1,0 +1,67 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Alterar Cadastro de Representante</h2>
+            </div>
+
+            <div class="p-2">
+                <span class="d-none d-md-block">
+                    <a href="/corretor/lista-corretores" class="btn btn-outline-primary btn-sm">Listar</a>
+                </span>
+                <div class="dropdown d-block d-md-none">
+                    <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ações
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
+                        <a class="dropdown-item" href="/corretor/lista-corretores">Listar</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {{>_msg}}
+        <hr>
+        
+        {{#each corretor}}
+        <form method="POST" action="/corretor/edit-corretor" >
+            <input id="idcorretor" name="idcorretor" type="hidden" value="{{idcorretor}}">
+            
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label><span class="text-danger">*</span> Nome:</label>
+                    <input name="nome" type="text" class="form-control" id="nome" value="{{nome}}"
+                        placeholder="Nome Corretor" required>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label><span class="text-danger">*</span> Celular:</label>
+                    <input name="celular" type="text" class="form-control" id="celular" placeholder="Celular"
+                        value="{{celular}}" onkeypress="$(this).mask('(00) 00000-0009')">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label><span class="text-danger ">*</span> E-mail:</label>
+                    <input name="email" type="text" class="form-control" id="email" value="{{email}}"
+                        placeholder="E-mail do corretor">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label><span class="text-danger ">*</span> Vl. Comissão:</label>
+                    <input name="comissao" type="text" class="form-control" id="comissao"
+                        value="{{comissao}}" placeholder="Comissão" onkeypress="$(this).mask('##0.00', {reverse: true})" >
+                </div>
+            </div>
+
+            <p>
+                <span class="text-danger">* </span>Campo obrigatório
+            </p>
+
+            <button type="submit" class="btn btn-warning">Salvar</button>
+
+        </form>
+
+        {{/each}}
+    </div>
+</div>

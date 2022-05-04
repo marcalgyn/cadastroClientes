@@ -1,0 +1,58 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Cadastro da Conta Bancária do Cliente</h2>
+            </div>
+            <div class="card-body">
+                {{>_msg}}
+                <hr>
+                <form method="POST" action="/conta/save-conta">
+                    <input name="idCliente" id="idCliente" type="hidden" value="{{cliente.idCliente}}">
+                    <input name="idConta" id="idConta" type="hidden" value="{{conta.idConta}}">
+                    <div class="form-group">
+                        <label>Cliente:</label>
+                        <h5 style="font-weight: bold;">{{cliente.nome}}</h5>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Dados da Conta Corrente</h5>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-5">
+                                    <label><span class="text-danger">*</span> Nome do Banco:</label>
+                                    <input name="nomeBanco" type="text" class="form-control" id="nomeBanco"
+                                        value="{{conta.nomeBanco}}" placeholder="Banco" required>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger">*</span> Agência Bancária:</label>
+                                    <input name="agenciaBanco" type="text" class="form-control" id="agenciaBanco"
+                                        placeholder="Agência" value="{{conta.agenciaBanco}}">
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger ">*</span> Operação:</label>
+                                    <input name="operacao" type="text" class="form-control" id="operacao"
+                                        value="{{conta.operacao}}" placeholder="Operação da Conta">
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger ">*</span> Número da Conta:</label>
+                                    <input name="numeroConta" type="text" class="form-control" id="numeroConta"
+                                        value="{{conta.numeroConta}}" placeholder="Número Conta">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                            <a href="/cliente/list-clientes" class="btn btn-warning">Listar Cliente</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

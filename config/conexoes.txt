@@ -1,0 +1,82 @@
+
+//Conexao Banco de Dado mysql web
+//bd: win2tech u: marcalgyn s: a1
+//host: mysql669.umbler.com
+
+//Conexao Local
+const connMySql = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "grinvesting-db",
+    multipleStatements: false
+});
+
+//Conexao Web
+const connMySql = mysql.createPool({
+    host: "mysql669.umbler.com",
+    user: "marcalgyn",
+    password: "a1a2a3a4",
+    database: "grinvesting-db",
+    multipleStatements: false
+});
+
+/*
+connMySql.connect(function(err) {
+    if (err) {
+        console.error("Erro connexão mySql: " + err.stack);
+        return;
+    }
+    console.log(
+        "Conectado ao banco de dados MySql grinvesting-db id: " + connMySql.threadId
+    );
+});
+*/
+
+
+//conexao web Externa
+
+const connMySql = mysql.createPool({
+    host: "mysql669.umbler.com",
+    user: "marcalgyn",
+    port: 41890,
+    password: "a1a2a3a4",
+    database: "grinvesting-db"
+    
+});
+
+
+
+//Conexao Local
+mongoose
+   .connect("mongodb://localhost/win2tech", {
+       useNewUrlParser: true,
+       useUnifiedTopology: true
+   })
+   .then(() => {
+       console.log("Conexão com o MongoDB realizada com sucesso!");
+   })
+   .catch(erro => {
+       console.log("Erro: Conexão com o MongoDB NÃO realizada! " + erro);
+   });
+
+
+//Conexao Web
+
+// Conexão com banco de dados mongodb Web
+//db: win2tech u: win s: a1
+//Host: mongo_win2tech:27017
+//String Conexão: geonosis.mongodb.umbler.com:42330
+
+mongoose.connect("mongodb://win:a1a2a3a4@mongo_win2tech:27017/win2tech", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log("Conexão com o MongoDB realizada com sucesso!");
+    })
+    .catch(erro => {
+        console.log("Erro: Conexão com o MongoDB NÃO realizada! " + erro);
+    });
+
+   

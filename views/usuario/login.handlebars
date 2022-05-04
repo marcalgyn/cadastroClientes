@@ -1,0 +1,20 @@
+<div class="form-group d-flex justify-content-center">
+    <form action="/usuario/login" class="form-signin text-center" method="POST">
+        <img src="/images/login.jpeg" alt="Win2Tech" width="100%" height="110">
+        <h1 class="h3 mb-3 font-weight-normal">Área Restrita</h1>
+
+        {{>_msg}}
+
+        <div class="form-group">
+            <input name="email" type="text" style="text-transform: lowercase;" class="form-control"
+                placeholder="Digite seu E-mail" required>
+        </div>
+        <div class="form-group">
+            <input name="password" type="password" class="form-control" placeholder="digite sua senha" required>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block mb-2" type="submit">Acessar</button>
+        <a href="/" class="btn btn-lg  btn-primary btn-block mb-2"> Voltar ao Site </a>
+        <a class="text-center" href="/usuario/signup" style="text-decoration: none;">Não tem cadastro? Registre
+            aqui!</a>
+    </form>
+</div>

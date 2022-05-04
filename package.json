@@ -1,0 +1,44 @@
+{
+  "name": "grinvesting",
+  "version": "1.0.0",
+  "description": "Sistema de controle de Investimento",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "investimento",
+    "administrativo"
+  ],
+  "author": "Marcal",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "convert-excel-to-json": "^1.7.0",
+    "del": "^5.1.0",
+    "ember-truth-helpers": "^2.1.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.1",
+    "handlebars-form-helpers": "^0.1.4",
+    "handlebars-helpers": "^0.10.0",
+    "handlebars-intl": "^1.1.2",
+    "html-pdf": "^2.2.0",
+    "mongodb": "^3.5.6",
+    "mongoose": "^5.9.10",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pdfkit": "^0.11.0",
+    "voilab-pdf-table": "^0.5.0"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.6"
+  },
+  "license": "ISC"
+}

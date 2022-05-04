@@ -1,0 +1,76 @@
+
+
+<nav class="sidebar">
+    <ul class="list-unstyled">
+        <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Painel</a></li>
+
+        {{#if usuario.usuario}}
+        <li>
+            <a href="#submenu2" data-toggle="collapse"><i class="fas fa-list-ul"></i> Menu</a>
+            <ul id="submenu2" class="list-unstyled collapse">
+               <li><a href="/empresa/list-empresas"><i class="fas fa-landmark"></i> Empresa</a></li>
+                <li><a href="/corretor"><i class="fas fa-money-check-alt"></i> Representantes</a></li -->
+
+                <li><a href="/cliente"><i class="fas fa-users"></i> Cliente</a></li>
+                <li><a href="/cliente/list-clientes"><i class="fas fa-paperclip"></i> Lista de Cadastro</a></li>
+            </ul>
+        </li>
+       
+        <!-- li><a href="/lancamento/sel-cliente"><i class="fas fa-balance-scale-right"></i> Lançamento Diário </a></li>
+
+        <li>
+            <a href="#submenu4" data-toggle="collapse"><i class="fas fa-chart-line"></i> Gerenciamento</a>
+            <ul id="submenu4" class="list-unstyled collapse">
+                <li><a href="/operacao"><i class="fas fa-chart-line"></i> Operações Financeiras</a></li>
+                <li><a href="/recebimento"><i class="fas fa-chart-line"></i> Recebimento</a></li>
+                <li><a href="/recebimento/list-recebimento"><i class="fas fa-chart-line"></i> Baixa Recebimento</a></li>
+            </ul>
+        </li -->
+
+        <!-- li>
+            <a href="#submenu3" data-toggle="collapse"><i class="fas fa-paperclip"></i> Relatórios</a>
+            <ul id="submenu3" class="list-unstyled collapse">
+                <li><a href="/lancamento/rel-periodo"><i class="fas fa-envelope-open-text"></i> Lançamentos por Período</a></li>
+                <li><a href="/lancamento/rel-recebimento"><i class="fas fa-tools"></i> Recebimento</a></li>
+            </ul>
+        </li -->
+
+        <!-- li>
+        <a href="#submenu5" data-toggle="collapse"><i class="fas fa-cogs"></i> Configurações</a>
+            <ul id="submenu5" class="list-unstyled collapse">
+                <li><a href="/configuracao"><i class="fas fa-cogs"></i> Totaliza Fechamento Mês</a></li>
+                <li><a href="/lancamento/sel-cliente-arquivo"><i class="fas fa-tools"></i> Importa Arquivo Operação</a></li>
+            </ul>
+        </li -->
+
+
+        {{else}}
+
+        <li>
+            <a href="#submenu1" data-toggle="collapse">
+                <i class="fas fa-user"></i> Cadastro
+            </a>
+            <ul id="submenu1" class="list-unstyled collapse">
+                 <!-- li><a href="/empresa/list-empresas"><i class="fas fa-landmark"></i> Empresa</a></li -->
+                <!-- li><a href="/contaEmpresa/list-contas"><i class="fas fa-money-check-alt"></i> Contas Bancarias</a></li -->
+                <!-- li><a href="/corretor"><i class="fas fa-money-check-alt"></i> Representantes</a></li -->
+                <li><a href="/cliente/list-clientes"><i class="fas fa-briefcase"></i> Cliente</a></li>
+                <!-- li><a href="#"><i class="far fa-credit-card"></i>Corretora</a></li -->
+            
+            
+            </ul>
+        </li>
+
+        <!-- li>
+            <a href="#submenu4" data-toggle="collapse"><i class="fas fa-paperclip"></i> Relatórios</a>
+            <ul id="submenu4" class="list-unstyled collapse">
+                <li><a href="/lancamento/rel-periodo"><i class="fas fa-envelope-open-text"></i> Lançamentos por Período</a></li>
+                <li><a href="/recebimento/list-pagamento"><i class="fas fa-chart-line"></i>Fechamento de Performance</a></li>
+            </ul>
+        </li -->
+        {{/if}}
+
+        <!-- li><a href="/lancamento/sel-movimentacao"> Performance</a></li -->
+        <li><a href="/usuario/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+    </ul>
+</nav>

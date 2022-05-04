@@ -1,0 +1,126 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Movimentação</h2>
+            </div>
+        </div>
+
+        <form method="GET" action="/lancamento/movimentacao">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="idCliente">Cliente</label>
+                    
+                    <select name="idCliente" id="idCliente" class="custom-select">
+                        {{#each cliente}}
+                        <option value="{{idCliente}}">{{nome}}</option>
+                        {{else}}
+                        <option value="0">Nehum Cliente Cadastrada</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label><span class="text-danger">*</span> Data Inicio:</label>
+                    <input name="dataInicio" type="date" class="form-control" id="dataInicio" required>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label><span class="text-danger">*</span> Data Fim:</label>
+                    <input name="dataFim" type="date" class="form-control" id="dataFim" required>
+                </div>
+
+                <div class="form-group col-md-2 p-4">
+                    <button type="submit" class="btn btn-info">Consultar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Listagem dos Lancamentos -->
+    <div class="list-group-item">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th class="d-lg-table-cell">Ativo</th>
+                            <th class="d-lg-table-cell">Data</th>
+                            <th class="d-lg-table-cell">Valor Operado</th>
+                            <th class="d-lg-table-cell">Swap</th>
+                            <th class="d-lg-table-cell">Valor Comissão</th>
+                            <th class="d-lg-table-cell">Percentual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each listagemlancamento}}
+                        <tr>
+                            <td>{{nome}}</td>
+                            <td class="d-lg-table-cell" style="text-transform: uppercase;" >{{ativo}}</td>
+                            <td class="d-lg-table-cell">{{moment dataMovimentacao "DD/MM/YYYY"}} </td>
+                            
+                            <td class="d-lg-table-cell">{{formatNumber valorOperado style="currency" currency="USD"}}</td>
+                            <td class="d-lg-table-cell">{{formatNumber swap style="currency" currency="USD"}}</td>
+                            <td class="d-lg-table-cell">{{formatNumber valorComissao style="currency" currency="USD"}}</td>
+                            <td class="d-lg-table-cell">{{percentual}}%</td>
+                        </tr>
+                        {{/each}}                   
+                    </tbody>
+                </table>
+
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="d-lg-table-cell">Total..: </th>
+
+                            <th class="d-lg-table-cell">Operação U$ </th>
+                            <th class="d-lg-table-cell">Swap U$ </th>
+                            <th class="d-lg-table-cell">Comissão U$ </th>
+                        </tr>
+                    </thead>
+
+                    </thead>
+                    <tbody>
+                        {{#each total}}
+                        <tr>
+                            <td class="d-lg-table-cell" colspan="1"></td>
+                            <td class="d-lg-table-cell">{{formatNumber operacao style="currency" currency="USD"}}</td>
+                            <td class="d-lg-table-cell">{{formatNumber swap style="currency" currency="USD"}}</td>
+                            <td class="d-lg-table-cell">{{formatNumber comissao style="currency" currency="USD"}}</td>
+                        </tr>
+                        {{/each}}
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //    function calculaComissao() {
+
+    /***** Valor da Comissao ta fixa porvisoriamente ******/
+    /*        var valorOperacao = document.getElementById('valorOperado').value;
+            var valorComissao1 = 0;
+            valorComissao1 = (valorOperacao * (50 / 100));
+            document.getElementById('valorComissao').value = (valorComissao1);
+        }
+    */
+    function getDataAtual() {
+        data = new Date();
+        data = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
+        document.getElementById('dataMovimentacao').value = (data);
+
+        return data;
+
+    }
+
+    window.onload = function () {
+        document.getElementById('dataMovimentacao').value = getDataAtual();
+    }
+
+</script>

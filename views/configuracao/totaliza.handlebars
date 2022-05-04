@@ -1,0 +1,63 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Totaliza Fechamento do Mês</h2>
+            </div>
+
+
+            <div class="card-body">
+                {{>_msg}}
+                
+
+                <form method="POST" action="/configuracao/save-operacao">
+                    <!-- <input name="idEmpresa" id="idEmpresa" type="hidden" value="{{empresa.idEmpresa}}"> -->
+                    
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Mês da Operação</h5>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+                                    <label for="idCliente">Cliente</label>
+                                    <select name="idCliente" id="idCliente" class="custom-select">
+                                        {{#each cliente}}
+                                        <option value="{{idCliente}}">{{nome}}</option>
+                                        {{else}}
+                                        <option value="0">Nenhum Cliente Cadastrado</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger ">*</span> Mês Operacao:</label>
+                                    <select name="idMes" id="idMes" class="custom-select">
+                                        <option value="0">Janeiro</option>
+                                        <option value="1">Fevereiro</option>
+                                        <option value="2">Março</option>
+                                        <option value="3">Abril</option>
+                                        <option value="4">Maio</option>
+                                        <option value="5">Junho</option>
+                                        <option value="6">Julho</option>
+                                        <option value="7">Agosto</option>
+                                        <option value="8">Setembro</option>
+                                        <option value="9">Outubro</option>
+                                        <option value="10">Novembro</option>
+                                        <option value="11">Dezembro</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary">Processar</button>
+                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

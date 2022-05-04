@@ -1,0 +1,46 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Fechamento de Performance</h2>
+                <h4 class="display-2 titulo">
+                    {{usuario.nome}}
+                </h4>
+            </div>
+        </div>
+        {{>_msg}}
+
+        <hr>
+        <!-- Listagem dos Lancamentos -->
+        <div class="list-group-item">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="d-lg-table-cell">Data Lançamento</th>
+                                <th class="d-lg-table-cell">Data Inicio</th>
+                                <th class="d-lg-table-cell">Data Fim</th>
+                                <th class="d-sm-table-cell">Valor a Pagar</th>
+                                <th class="d-sm-table-cell">Valor Pago</th>
+                                <th class="d-sm-table-cell">Data Pago</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each listagem}}
+                            <tr>
+                                <td class="d-sm-table-cell">{{moment dataLancamento "DD/MM/YYYY"}}</td>
+                                <td class="d-sm-table-cell">{{moment dataInicio "DD/MM/YYYY"}} </td>
+                                <td class="d-sm-table-cell">{{moment dataFim "DD/MM/YYYY"}} </td>
+                                <td class="d-lg-table-cell"> R$ {{valorRs}} </td>
+                                <td class="d-lg-table-cell"> R$ {{valorPago}} </td>
+                                <td class="d-sm-table-cell">{{moment dataPagamento "DD/MM/YYYY"}} </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

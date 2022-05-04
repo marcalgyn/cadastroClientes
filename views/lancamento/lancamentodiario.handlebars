@@ -1,0 +1,324 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Lançamento Diario</h2>
+            </div>
+        </div>
+        {{>_msg}}
+        <hr>
+
+        <form method="POST" action="/lancamento/add-lancamentodiario">
+            <input name="idLancamento" id="idLancamento" type="hidden" value="{{listagemlancamento.idLancamento}}">
+            <input id="idCliente" name="idCliente" value="{{cliente.idCliente}}" type="hidden">
+
+            <div class="row">
+                <label for="nome">
+                    <h4>Cliente..: </h4>
+                </label>
+                <div class="col-md-6">
+                    <h4> <input name="nome" id="nome" type="text" size="37" value="{{cliente.nome}}" readonly> </h4>
+                </div>
+
+                <label for="percentual">Percentual Comissão..: </label>
+                <div class="form-group col-md-1">
+                    <input name="percentualComissao" id="percentualComissao" size="5" type="true"
+                        value="{{cliente.valorComissao}}" readonly="true">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                    <label><span class="text-danger">*</span> Ativo:</label>
+                    <input name="ativo" type="text" class="form-control input-group date" id="ativo"
+                        value="{{listagemlancamento.ativo}}" placeholder="Ativo" style="text-transform: uppercase;"
+                        onkeyup="this.value = this.value.toUpperCase();" required>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label><span class="text-danger">*</span> Data Lançamento:</label>
+                    <input name="dataMovimentacao" type="date" class="form-control" id="dataMovimentacao"
+                        value="{{listagemlancamento.dataMovimentacao}}" placeholder="Data Movimentação" required>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label><span class="text-danger">*</span> Valor Operado U$:</label>
+                    <input name="valorOperado" type="text" class="form-control" id="valorOperado"
+                        placeholder="Valor Operado" value="{{listagemlancamento.valorOperado}}"
+                        onblur="calculaComissao(valorOperado.value, {{cliente.valorComissao}})" required>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label><span class="text-danger">*</span> Swap:</label>
+                    <input name="swap" type="text" class="form-control input-group date" id="swap"
+                        value="{{listagemlancamento.swap}}" placeholder="swap"
+                        onblur="calculaComissao(valorOperado.value, {{cliente.valorComissao}})" required>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label><span class="text-danger ">*</span> Valor Comissão U$:</label>
+                    <input id="valorComissao" type="text" name="valorComissao" class="form-control"
+                        value="{{listagemlancamento.valorComissao}}" placeholder="Valor de Comissão"
+                        onkeypress="$(this).mask('##0.00', {reverse: true})" required>
+                </div>
+            </div>
+            <p>
+                <span class="text-danger">* </span>Campo obrigatório
+            </p>
+            <button type="submit" class="btn btn-warning"
+                onclick="calculaComissao(valorOperado.value, {{cliente.valorComissao}})">Salvar</button>
+            <a href="/lancamento/sel-cliente" class="btn btn-dark"> Voltar </a>
+        </form>
+    </div>
+
+    <!-- Listagem dos Lancamentos -->
+    <div class="list-group-item">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th class="d-lg-table-cell">Ativo</th>
+                            <th class="d-sm-table-cell">Data</th>
+                            <th class="d-lg-table-cell">Valor Operado</th>
+                            <th class="d-lg-table-cell">Swap</th>
+                            <th class="d-lg-table-cell">Valor Comissão</th>
+                            <th class="d-lg-table-cell">Percentual</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each listagemlancamento}}
+                        <tr>
+                            <td>{{idLancamento}}</td>
+                            <td>{{nome}}</td>
+                            <td class="d-sm-table-cell"> {{ativo}}</td>
+                            <td class="d-sm-table-cell"> {{moment dataMovimentacao "DD/MM/YYYY"}} </td>
+                            <td class="d-lg-table-cell"> {{formatNumber valorOperado style="currency" currency="USD"}}
+                            </td>
+                            <td class="d-lg-table-cell"> {{formatNumber swap style="currency" currency="USD"}} </td>
+                            <td class="d-lg-table-cell"> {{formatNumber valorComissao style="currency" currency="USD"}}
+                            </td>
+                            <td class="d-lg-table-cell"> {{percentual}} %</td>
+
+                            <td class="text-center">
+                                <span class="d-none d-md-block">
+                                    <a href="/lancamento/edit-lancamento/{{idLancamento}}"
+                                        class="btn btn-outline-primary btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal" data-whateverid="{{idLancamento}}"
+                                        data-whatevernome="{{nome}}" data-whateverativo="{{ativo}}"
+                                        data-whateverdatamovimentacao="{{moment dataMovimentacao "DD/MM/YYYY"}}"
+                                        data-whateverswap="{{swap}}" data-whatevervaloroperado="{{valorOperado}}"
+                                        data-whatevervalorcomissao="{{valorComissao}}"
+                                        data-whateverpercentual="{{percentual}}">Alterar Lançamento</a>
+                                </span>
+
+                                <div class="dropdown d-block d-md-none">
+                                    <a href="/lancamento/edit-lancamento/{{idLancamento}}"
+                                        class="btn btn-outline-primary btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal" data-whateverid="{{idLancamento}}"
+                                        data-whatevernome="{{nome}}" data-whateverativo="{{ativo}}"
+                                        data-whateverdatamovimentacao="{{moment dataMovimentacao "DD/MM/YYYY"}}"
+                                        data-whateverswap="{{swap}}" data-whatevervaloroperado="{{valorOperado}}"
+                                        data-whatevervalorcomissao="{{valorComissao}}"
+                                        data-whateverpercentual="{{percentual}}">Alterar</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Monta Formulario Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Editar Lançamento</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            {{>_msg}}
+            <hr>
+            <div class="modal-body">
+                <form method="POST" action="/lancamento/update-lancamentodiario" id="form">
+                    <!--  <input name="idLancamento" id="idLancamento" type="hidden" value="{{lancamentodiario.idLancamento}}" -->
+                    <label for="recipient-name" class="control-label">ID:</label>
+                    <input id="idCliente_modal" name="idCliente_modal" value="{{cliente.idCliente}}">
+                    <input type="hidden" id="id_modal" name="id_modal" value="{{listagemlancamento.idLancamento}}">
+
+                    <div class="form-row">
+                        <div class="form-group col-md-10">
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Nome:</label>
+                                <input type="text" class="form-control" id="nome_modal" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="recipient-name" class="control-label">Data Movimentação:</label>
+                            <input type="text" class="form-control" id="datamovimentacao_modal"
+                                name="datamovimentacao_modal">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="recipient-name" class="control-label">Ativo:</label>
+                            <input type="text" class="form-control" id="ativo_modal" name="ativo_modal"
+                                style="text-transform: uppercase;" required>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="recipient-name" class="control-label">Swap:</label>
+                            <input type="text" class="form-control" id="swap_modal" name="swap_modal"
+                                onblur="calculaComissao(valoroperado_modal.value, percentual_modal.value)" required>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="recipient-name" class="control-label">Valor Operado:</label>
+
+                            <input type="text" class="form-control" id="valoroperado_modal" name="valoroperado_modal"
+                                onblur="calculaComissao(valoroperado_modal.value, percentual_modal.value)" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="recipient-name" class="control-label">Percentual:</label>
+                            <input type="text" class="form-control" id="percentual_modal" name="percentual_modal"
+                                onkeypress="$(this).mask('##0.00', {reverse: true})"
+                                onclick="calculaComissao(valoroperado_modal.value, this.value)" required>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="recipient-name" class="control-label">Comissão:</label>
+                            <input type="text" class="form-control" id="valorcomissao_modal" name="valorcomissao_modal"
+                                onkeypress="$(this).mask('##0.00', {reverse: true})" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary"
+                            onclick="calculaComissao(valoroperado_modal.value, percentual_modal.value)">Alterar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function calculaComissao(valor, comissao) {
+
+        /***** Valor da Comissao ta fixa porvisoriamente ******/
+        //  var valorOperacao = document.getElementById('valorOperado').value;
+
+        var valorOperacao = parseFloat(valor);
+        var valorComissao = 0;
+        var pComissao = parseFloat(comissao);
+
+        //Inserindo Registro    
+        var swap = parseFloat(document.getElementById('swap').value);
+        if (swap < 0) {
+            swap = swap * (-1);
+            valorComissao = ((valorOperacao - swap) * (pComissao / 100));
+            
+            /* Independente do valor da comissão*/
+            document.getElementById('valorComissao').value = valorComissao;
+            
+            /* Funcao calcula quando a camissão for negativo zera a comissao
+            if (valorComissao < 0) {
+                document.getElementById('valorComissao').value = 0.00;
+            } else {
+                document.getElementById('valorComissao').value = valorComissao;
+            }
+            */
+
+        } else {
+            valorComissao = (valorOperacao + swap) * (pComissao / 100);
+            document.getElementById('valorComissao').value = valorComissao;
+
+            /* Valida se a comissao for negativo nao calcaula comissao
+            if (valorComissao < 0) {
+                document.getElementById('valorComissao').value = 0.00;
+            } else {
+                document.getElementById('valorComissao').value = valorComissao;
+            }
+            */
+        }
+
+
+        //Tela Modal Alterando 
+        var swap_modal = parseFloat(document.getElementById('swap_modal').value);
+        var pComissao1 = parseFloat(comissao);
+        var valorComissao1 = 0;
+
+        if (swap_modal < 0) {
+            swap_modal = (swap_modal * (-1));
+            valorComissao1 = ((valorOperacao - swap_modal) * (pComissao1 / 100));
+            /* Insere valor independente se comissao e negativa*/
+            document.getElementById('valorcomissao_modal').value = valorComissao1;
+
+            /* Calcula se valor da comissao e negativo
+            if (valorComissao1 < 0) {
+                document.getElementById('valorcomissao_modal').value = 0.00
+            } else {
+                document.getElementById('valorcomissao_modal').value = valorComissao1;
+            }
+            */
+
+        } else {
+            valorComissao1 = ((valorOperacao + (swap_modal)) * (pComissao1 / 100));
+            /*Inserer valor da comissao independente se e negativo ou nao*/
+            document.getElementById('valorcomissao_modal').value = valorComissao1;
+            
+            /* Valida se a comissao for negativo
+            if (valorComissao1 < 0) {
+                document.getElementById('valorcomissao_modal').value = 0.00;
+            } else {
+                document.getElementById('valorcomissao_modal').value = valorComissao1;
+            }
+            */
+        }
+    }
+
+    function getDataAtual() {
+        data = new Date();
+        data = data.getDay() + '/' + data.getMonth() + '/' + data.getFullYear();
+        document.getElementById('dataMovimentacao').value = (data);
+
+        return data;
+    }
+
+    window.onload = function () {
+        document.getElementById('dataMovimentacao').value = getDataAtual();
+    }
+
+    function validaCampos(frm) {
+        var erros = 0;
+        var mgs = "";
+
+        if (frm.ativo.value == '') {
+            msg = "Informe o Ativo.\n;"
+            alert(msg);
+            erros++;
+        }
+
+        if (erros > 0) {
+            alert(mgs);
+            return false;
+        }
+        frm.submit();
+        header("Cache: no-cache");
+    }
+
+</script>

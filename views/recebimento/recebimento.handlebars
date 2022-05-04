@@ -1,0 +1,128 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Cadastro de Recebimentos</h2>
+            </div>
+            <div class="card-body">
+                {{>_msg}}
+                <hr>
+                <form method="POST" action="/recebimento/save-recebimento">
+                    <!-- <input name="idEmpresa" id="idEmpresa" type="hidden" value="{{empresa.idEmpresa}}"> -->
+                    <input name="idRecebimento" id="idRecebimento" type="hidden" value="{{recebimento.idRecebimento}}">
+
+                    <div class="form-group col-md-5">
+                        <label for="idEmpresa">Cliente</label>
+                        <select name="idCliente" id="idCliente" class="custom-select">
+                            {{#each cliente}}
+                            <option value="{{idCliente}}">{{nome}}</option>
+                            {{else}}
+                            <option value="0">Nenhum Cliente Cadastrado</option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Dados da Operação</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger ">*</span> Data Lançamento:</label>
+                                    <input name="dataLancamento" type="date" class="form-control" id="dataLancamento"
+                                        value="{{recebimento.dataLancamento}}" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger ">*</span> Data Inicial:</label>
+                                    <input name="dataInicio" type="date" class="form-control" id="dataInicio"
+                                        value="{{recebimento.dataInicio}}" required>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger ">*</span> Data Final:</label>
+                                    <input name="dataFim" type="date" class="form-control" id="dataFim"
+                                        value="{{recebimento.dataFim}}" required>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label><span class="text-danger">*</span> Vl. Recebimento U$:</label>
+
+                                    <input name="valorUs" type="text" class="form-control" id="valorUs"
+                                        onkeypress="$(this).mask('##0.00', {reverse: true})"
+                                        value="{{recebimento.valorUs}}" required>
+                                </div>
+
+                                <div class="form-group col-md-1">
+                                    <label><span class="text-danger ">*</span> Câmbio:</label>
+                                    <input name="cambio" type="text" class="form-control" id="cambio"
+                                        onkeypress="$(this).mask('##0.00', {reverse: true})"
+                                        value="{{recebimento.cambio}}" onblur="calculaRecebimento(valorUs.value);"
+                                        required>
+                                </div>
+
+                                <div class="form-group col-md-2">
+                                    <label><span class="text-danger">*</span> Valor R$:</label>
+                                    <input name="valorRs" type="text" class="form-control" id="valorRs"
+                                        onkeypress="$(this).mask('##0.00', {reverse: true})"
+                                        value="{{recebimento.valorRs}}" placeholder="Valor" readonly
+                                        onblur="calculaRecebimento(valorUs.value);" required>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <div class="card">
+                                        <h6 style="text-align: center;">Baixa Pagamento</h6>
+                                        <div class="card-body" style="align-items: center;">
+                                            <div class="form-row" style="text-align: center;">
+
+                                                <div class="form-group col-md-3">
+                                                    <label><span class="text-danger ">*</span> Data Pagamento:</label>
+                                                    <input name="dataPagamento" type="date" class="form-control" id="dataPagamento"
+                                                        value="{{recebimento.dataPagamento}}">
+                                                </div>
+
+                                                <div class="form-group col-md-3">
+                                                    <label><span class="text-danger">*</span> Valor Pago R$:</label>
+                                                    <input name="valorPago" type="text" class="form-control" id="valorPago"
+                                                     onkeypress="$(this).mask('##0.00', {reverse: true})" value="{{recebimento.valorPago}}" placeholder="Valor Pago" >
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+
+                            <button type="submit" class="btn btn-primary"
+                                onclick="calculaRecebimento(valorUs.value)">Salvar</button>
+                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                            <!-- a href="/operacao/list-operacoes" class="btn btn-warning">Listar Operacoes</a -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function calculaRecebimento(valor) {
+
+        /***** Valor do Recebimento Comissao ta fixa porvisoriamente ******/
+        //  var valorOperacao = document.getElementById('valorOperado').value;
+
+        var valorRecebimento = valor;
+        //Inserindo Registro    
+        var cambio = (document.getElementById('cambio').value);
+
+        valorRecebimento = (valorRecebimento * cambio);
+
+        document.getElementById('valorRs').value = (valorRecebimento);
+
+    }
+</script>

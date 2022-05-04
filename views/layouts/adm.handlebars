@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" href="/images/favicon.ico">
+    <script defer src="/js/fontawesome-all.min.js"></script>
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <title>MarcalGyn - Administrativo</title>
+</head>
+
+<body>
+
+    {{>_header}}
+    <div class="d-flex">
+        {{>_sidebar}}
+        {{{body}}}
+    </div>
+
+
+ 
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <!-- script para telas do modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script src="/js/funcoes.js"></script>
+
+    <script src="/js/dashboard.js"></script>
+
+    <!-- Script para passar os dados do formulario lacamento para o modal-->
+    <script type="text/javascript">
+        $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var recipientid = button.data('whateverid');
+            var recipientnome = button.data('whatevernome');
+            var recipientativo = button.data('whateverativo');
+            var recipientdatamovimentacao = button.data('whateverdatamovimentacao');
+            var recipientvaloroperado = button.data('whatevervaloroperado');
+            var recipientvalorcomissao = button.data('whatevervalorcomissao');
+            var recipientpercentual = button.data('whateverpercentual');
+            var recipientswap = button.data('whateverswap');
+
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('#id_modal').val(recipientid);
+            modal.find('#nome_modal').val(recipientnome);
+            modal.find('#ativo_modal').val(recipientativo);
+            modal.find('#datamovimentacao_modal').val(recipientdatamovimentacao);
+            modal.find('#valoroperado_modal').val(formataMoeda(recipientvaloroperado));
+            modal.find('#valorcomissao_modal').val(formataMoeda(recipientvalorcomissao));
+            modal.find('#percentual_modal').val(formataMoeda(recipientpercentual));
+            modal.find('#swap_modal').val(formataMoeda(recipientswap));
+
+        });
+
+    </script>
+
+    <!-- Script para passar os dados do formulario lacamento para o modal-->
+    <script type="text/javascript">
+        $('#modalRecebimento').on('show.bs.modal', function (event) {
+
+            var button = $(event.relatedTarget);
+            var recipientid = button.data('whateverid');
+            var recipientnome = button.data('whatevernome');
+            var recipientdatalancamento = button.data('whateverdatalancamento');
+            var recipientdataPagamento = button.data('whateverdataPagamento');
+            var recipientvalorPago = button.data('whatevervalorPago');
+            var recipientvalorrs = button.data('whatevervalorrs');
+
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('#id_modal').val(recipientid);
+            modal.find('#nome_modal').val(recipientnome);
+            modal.find('#datalancamento_modal').val(tratadata(recipientdatalancamento));
+            modal.find('#dataPagamento_modal').val(recipientdataPagamento);
+            modal.find('#valorrs_modal').val(formataMoeda(recipientvalorrs));
+            modal.find('#valorPago_modal').val(recipientvalorPago);
+
+        });
+    </script>
+
+</body>
+
+</html>
